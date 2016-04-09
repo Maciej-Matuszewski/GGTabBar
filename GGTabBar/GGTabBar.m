@@ -94,6 +94,7 @@ static const NSInteger kMarginSeparatorOffsetTag = 8000;
 }
 
 - (void)selectButtonAtIndex:(int)select{
+    _selectedButtonIndex = select;
     [self setSelectedButton:[self.buttons objectAtIndex:select]];
 }
 

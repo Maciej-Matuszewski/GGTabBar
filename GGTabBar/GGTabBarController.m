@@ -61,6 +61,8 @@
     if (select < self.viewControllers.count || select >= 0){
         [self selectViewController:[_viewControllers objectAtIndex:select]];
         [self.tabBarView selectButtonAtIndex:select];
+        self.selectedViewController = [_viewControllers objectAtIndex:select];
+        self.selectedIndex = select;
     }
 }
 
