@@ -93,6 +93,10 @@ static const NSInteger kMarginSeparatorOffsetTag = 8000;
     [self updateConstraints];
 }
 
+- (void)selectButtonAtIndex:(int)select{
+    [self setSelectedButton:[self.buttons objectAtIndex:select]];
+}
+
 #pragma mark - UIView
 - (void)didMoveToSuperview
 {

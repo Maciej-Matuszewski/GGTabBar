@@ -58,7 +58,10 @@
 }
 
 - (void)selectViewAtIndex:(int)select{
-    if (select < self.viewControllers.count || select >= 0)[self selectViewController:[_viewControllers objectAtIndex:select]];
+    if (select < self.viewControllers.count || select >= 0){
+        [self selectViewController:[_viewControllers objectAtIndex:select]];
+        [self.tabBarView selectButtonAtIndex:select];
+    }
 }
 
 #pragma mark - Delegation

@@ -19,6 +19,7 @@
 - (instancetype)initWithFrame:(CGRect)frame viewControllers:(NSArray *)viewControllers appearance:(NSDictionary *)appearance;
 - (void)setAppearance:(NSDictionary *)appearance;
 - (void)startDebugMode;
+- (void)selectButtonAtIndex:(int)select;
 @end
 
 @protocol GGTabBarDelegate <NSObject>
