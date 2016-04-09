@@ -57,6 +57,10 @@
     }
 }
 
+- (void)selectViewAtIndex:(int)select{
+    if (select < self.viewControllers.count || select >= 0)[self selectViewController:[_viewControllers objectAtIndex:select]];
+}
+
 #pragma mark - Delegation
 
 - (void)tabBar:(GGTabBar *)tabBar didPressButton:(UIButton *)button atIndex:(NSUInteger)tabIndex
