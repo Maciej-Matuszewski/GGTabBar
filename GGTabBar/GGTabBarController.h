@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSDictionary *tabBarAppearanceSettings;
 @property (nonatomic, assign) BOOL debug;
 - (void)selectViewAtIndex:(int)select;
+- (void)setHidden:(BOOL) hidden;
 @end
 
 @protocol GGTabBarControllerDelegate <NSObject>

@@ -66,6 +66,12 @@
     }
 }
 
+- (void)setHidden:(BOOL) hidden{
+    if(hidden)self.tabBarView.removeHeightConstraints;
+    else self.tabBarView.addHeightConstraints;
+    [self.view layoutIfNeeded];
+}
+
 #pragma mark - Delegation
 
 - (void)tabBar:(GGTabBar *)tabBar didPressButton:(UIButton *)button atIndex:(NSUInteger)tabIndex
@@ -107,26 +113,48 @@
 
 #pragma mark - Layout
 
-- (void)layoutTabBarView
+- (void)layoutViewWithoutTabBar
 {
     NSDictionary *viewsDictionary = @{@"tabbar_view" : _tabBarView,
-                                    @"presentation_view" : _presentationView};
-
+                                      @"presentation_view" : _presentationView};
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tabbar_view]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:viewsDictionary]];
-
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[presentation_view]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:viewsDictionary]];
-
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[presentation_view][tabbar_view]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:viewsDictionary]];
+    
+}
 
+- (void)layoutTabBarView
+{
+    NSDictionary *viewsDictionary = @{@"tabbar_view" : _tabBarView,
+                                      @"presentation_view" : _presentationView};
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tabbar_view]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:viewsDictionary]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[presentation_view]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:viewsDictionary]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[presentation_view][tabbar_view]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:viewsDictionary]];
+    
 }
 
 - (void)fitView:(UIView *)toPresentView intoView:(UIView *)containerView

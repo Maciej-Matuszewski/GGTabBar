@@ -193,15 +193,15 @@ static const NSInteger kMarginSeparatorOffsetTag = 8000;
 {
     // Adjust the constraint multiplier and item depending if there's a custom tabBarHeight
     CGFloat multiplier = self.tabBarHeight == CGFLOAT_MIN ? 1.5 : 0.0;
-
+    
     id item = self.tabBarHeight == CGFLOAT_MIN ? [_buttons firstObject] : nil;
     CGFloat layoutConstant = item ? 0.0 : self.tabBarHeight;
-
+    
     if (_heightConstraint) {
         [self removeConstraint:_heightConstraint];
         _heightConstraint = nil;
     }
-
+    
     _heightConstraint = [NSLayoutConstraint constraintWithItem:self
                                                      attribute:NSLayoutAttributeHeight
                                                      relatedBy:NSLayoutRelationEqual
@@ -209,6 +209,24 @@ static const NSInteger kMarginSeparatorOffsetTag = 8000;
                                                      attribute:NSLayoutAttributeHeight
                                                     multiplier:multiplier
                                                       constant:layoutConstant];
+    
+    [self addConstraint:_heightConstraint];
+}
+
+- (void)removeHeightConstraints
+{
+    if (_heightConstraint) {
+        [self removeConstraint:_heightConstraint];
+        _heightConstraint = nil;
+    }
+    
+    _heightConstraint = [NSLayoutConstraint constraintWithItem:self
+                                                     attribute:NSLayoutAttributeHeight
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:nil
+                                                     attribute:NSLayoutAttributeHeight
+                                                    multiplier:1.0
+                                                      constant:0];
     
     [self addConstraint:_heightConstraint];
 }

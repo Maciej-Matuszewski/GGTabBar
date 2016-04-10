@@ -20,6 +20,8 @@
 - (void)setAppearance:(NSDictionary *)appearance;
 - (void)startDebugMode;
 - (void)selectButtonAtIndex:(int)select;
+- (void)removeHeightConstraints;
+- (void)addHeightConstraints;
 @end
 
 @protocol GGTabBarDelegate <NSObject>
